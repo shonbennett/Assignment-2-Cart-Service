@@ -7,7 +7,7 @@ import requests
 import logging
 
 #make Flask application 
-app = Flask(__name__)
+app = Flask("Cart Service")
 
 user_cart = [] #user's cart starts off as empty 
 
