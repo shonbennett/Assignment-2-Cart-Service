@@ -25,7 +25,7 @@ def add(user_id, product_id, amount_to_add):
     remaining_amount = 0
 
     #gather product needed via the ID; this will return a Response object  
-    cart_url = f"http://127.0.0.1:5000/products/{product_id}"
+    cart_url = f"https://product-service-1bd0.onrender.com/products/{product_id}"
     result = requests.get(cart_url)
     app.logger.info("User is attempting to add items to their cart")
     
@@ -49,7 +49,7 @@ def add(user_id, product_id, amount_to_add):
         "product_id":product_id,
         "quantity":product['product']['quantity']
     }
-    result = requests.post(f"http://127.0.0.1:5000/products", json=args)
+    result = requests.post(f"https://product-service-1bd0.onrender.com/products", json=args)
     assert result.status_code != 404, "Cart's call to Product Service POST method failed (method: add)!!!"
     
     #finally add the requested amount to user cart (if too much was requested, add remaining amount to cart)
@@ -81,7 +81,7 @@ def remove(user_id, product_id, amount_to_remove):
     amount_to_send_back = 0
 
     #gather product needed via the ID; this will return a Response object  
-    cart_url = f"http://127.0.0.1:5000/products/{product_id}"
+    cart_url = f"https://product-service-1bd0.onrender.com/products/{product_id}"
     result = requests.get(cart_url)
     app.logger.info("User is attempting to remove items from cart")
     
@@ -121,7 +121,7 @@ def remove(user_id, product_id, amount_to_remove):
         }
 
 
-    result = requests.post(f"http://127.0.0.1:5000/products", json=args)
+    result = requests.post(f"https://product-service-1bd0.onrender.com/products", json=args)
     assert result.status_code != 404, "Cart's call to Product Service POST method failed (method: remove)!!!"
     
     #if this is true, that means the quantity is 0. just remove the item altogether 
